@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Commodity Prices Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Commodity Prices Dashboard</h1>
+    
+    <div class="controls">
+        <select id="commodity-select">
+            <option value="">Select a commodity...</option>
+        </select>
+    </div>
+    
+    <div id="widgets-container" class="dashboard"></div>
+    
+    <div class="chart-container">
+        <canvas id="price-chart"></canvas>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
