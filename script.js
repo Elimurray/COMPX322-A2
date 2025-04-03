@@ -101,16 +101,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Extract and sort data by date (newest first)
             // const sortedDates = Object.keys(timeSeries).sort((a, b) => new Date(b) - new Date(a));
-            const sortedData = timeSeries.sort((a, b) => {
+            const sortedDates = timeSeries.sort((a, b) => {
                 // Convert dates to timestamps for comparison
                 const dateA = new Date(a.date).getTime();
                 const dateB = new Date(b.date).getTime();
-                return dateB - dateA; // For descending order (newest first)
+                return dateA - dateB; // For descending order (newest first)
             });
             
-            sortedDates.forEach((date, value) => {
-                labels.push(date);
-                prices.push(parseFloat(value));
+            console.log
+
+
+            sortedDates.forEach(item => {
+                if (!isNaN(item.value)) {
+                    labels.push(item.date);
+                    prices.push(parseFloat(item.value));
+                }
+                    
+
             });
             
             console.log("Processed data - Labels:", labels, "Prices:", prices); // Debug log
