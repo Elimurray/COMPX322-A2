@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.widgetElement.innerHTML = `
                 <h3>${commodity.name}</h3>
                 <p>Code: ${commodity.code}</p>
-                <p>${commodity.description}</p>
+                <p>${commodity.information}</p>
                 <button class="graph-btn" data-id="${commodity.id}">Show Graph</button>
                 <button class="compare-btn" data-id="${commodity.id}">Compare</button>
                 <button class="remove-btn" data-id="${commodity.id}">Remove</button>
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fetch commodity price data from Alpha Vantage
     function fetchCommodityData(commodity, isComparison) {
-    const apiKey = 'AU46PSUIJB2V8IRH'; // Your API key
-    //const apiKey = 'QHJQXDJIHH14NPD5'; // Your API key
+    // const apiKey = 'AU46PSUIJB2V8IRH'; // Your API key
+    const apiKey = 'QHJQXDJIHH14NPD5'; // Your API key
     const n = commodity.name.toUpperCase()
     const url = `https://www.alphavantage.co/query?function=${n}&apikey=${apiKey}&interval=monthly`;
     
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentChart) {
             currentChart.destroy();
         }
-        
+        let color = getRandomColor();
         const ctx = chartCanvas.getContext('2d');
         currentChart = new Chart(ctx, {
             type: 'line',
@@ -153,9 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: commodity.name,
                     data: prices,
-                    borderColor: getRandomColor(),
-                    tension: 0.1,
-                    fill: false
+                    borderColor: color,
+                    backgroundColor: color.replace(")", ",0.2)"),
+                    tension: 0.3,
+                    fill: true
                 }]
             },
             options: {
@@ -168,7 +169,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 scales: {
                     y: {
-                        beginAtZero: false
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Price ($)',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
                     }
                 }
             }
@@ -178,13 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add dataset to existing chart
     function addToChart(commodity, labels, prices) {
         if (!currentChart) return;
-        
+        let color = getRandomColor();
         currentChart.data.datasets.push({
             label: commodity.name,
             data: prices,
-            borderColor: getRandomColor(),
-            tension: 0.1,
-            fill: false
+            borderColor: color,
+            backgroundColor: color.replace(")", ",0.2)"),
+            tension: 0.3,
+            fill: true
         });
         
         currentChart.update();
