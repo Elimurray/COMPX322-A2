@@ -89,25 +89,29 @@ h1::after {
     color: #333;
     width: 100%;
     max-width: 400px;
-    /* margin-bottom: 20px; */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    appearance: none; /* Removes default system styling */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 16px;
     cursor: pointer;
+    padding-right: 35px; /* Add space for the arrow */
 }
 
-/* Hover state */
+/* Darken the arrow on hover/focus */
 #commodity-select:hover {
     border-color: #4CAF50;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
 }
 
-/* Focus state */
 #commodity-select:focus {
     outline: none;
     border-color: #4CAF50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
 }
 
 /* Style the dropdown options */
